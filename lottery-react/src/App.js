@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+
 import './App.css';
 import lottery from './lottery'
-//import { render } from '@testing-library/react';
+
 import web3 from './web3';
+;
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
   
 
   async  componentDidMount(){
+    
     const manager = await lottery.methods.manager().call();
     const players = await lottery.methods.getPlayers().call();
     const balance = await web3.eth.getBalance(lottery.options.address);
@@ -26,10 +28,10 @@ class App extends Component {
     this.setState({manager,players,balance});
   }
 
-  // no need to bind this on render function by using arrow
+ 
   onSubmit = async(event) => {
     event.preventDefault();
-
+  
    const accounts = await web3.eth.getAccounts();
    
    this.setState({message: 'Please wait 15-30 seconds to enter the lottery! ^* *^'});
@@ -45,6 +47,7 @@ class App extends Component {
 
 
   onClick = async(event) =>{
+   
     const accounts = await web3.eth.getAccounts();
 
     this.setState({message: 'Waiting on transaction success...!'});
@@ -59,7 +62,8 @@ class App extends Component {
   }
 
   render(){
-  return (
+   
+    return (
     <div>
       <h2> Lottery Contract</h2>
       <p> This Contract is managed by {this.state.manager}
